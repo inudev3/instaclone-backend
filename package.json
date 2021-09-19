@@ -1,0 +1,37 @@
+{
+	"name": "instaclone",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "nodemon --exec babel-node server --delay 2",
+		"migrate": "npx prisma migrate dev",
+		"studio": "npx prisma studio"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/inust33/instaclone-backend.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/inust33/instaclone-backend/issues"
+	},
+	"homepage": "https://github.com/inust33/instaclone-backend#readme",
+	"dependencies": {
+		"@graphql-tools/load-files": "^6.4.0",
+		"@graphql-tools/merge": "^8.1.2",
+		"@graphql-tools/schema": "^8.2.0",
+		"@prisma/client": "^3.0.2",
+		"apollo-server": "^3.3.0",
+		"graphql": "^15.5.3"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.15.5",
+		"@babel/node": "^7.15.4",
+		"@babel/preset-env": "^7.15.6",
+		"nodemon": "^2.0.12",
+		"prisma": "^3.0.2"
+	}
+}
