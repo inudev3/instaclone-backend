@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "outDir": "./built",
+    "allowJs": true,
+    "target": "es5",
+    "esModuleInterop": true
+  },
+  "include": [
+    "./src/**/*"
+    //every folder and files inside of src
+  ]
+}
