@@ -1,11 +1,11 @@
-import client from "../../client";
 import * as bcrypt from "bcrypt";
 import * as jwt from "jsonwebtoken";
 import {Resolvers} from "../../types";
 
+
 const resolvers: Resolvers = {
     Mutation: {
-        login: async (_, {username, password}, context) => {
+        login: async (_, {username, password}, {client}) => {
             const user = await client.user.findFirst({where: {username}});
             if (!user) {
                 return {
@@ -20,7 +20,7 @@ const resolvers: Resolvers = {
                     error: "incorrect password"
                 }
             }
-            const token = await jwt.sign({id: user.id}, process.env.SECRET_KEY);
+            const token = jwt.sign({id: user.id}, process.env.SECRET_KEY);
             return {
                 ok: true,
                 token,

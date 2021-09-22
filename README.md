@@ -6,9 +6,12 @@ Instaclone Backend.
 
 - [x] Create Account
 - [x] See Profile
-- [] Login
-- [] Edit Profile
-- [] Follow User
-- [] Unfollow User
-- [] Change Avatart(Image Upload)
+- [x] Login
+- [x] Edit Profile
+- [x] Follow User
+- [x] Unfollow User
+- [x] Change Avatar(Image Upload)
+- [] See followers and See Following w/ Pagination
+- [] Computed Fields
+- [] Search Users
 

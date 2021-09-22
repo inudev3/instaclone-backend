@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec ts-node src/server --ext ts,js --delay 2",
+    "preinstall": "npx npm-force-resolutions",
+    "dev": "nodemon --exec ts-node src/server --ext js,ts --delay 2s ",
     "migrate": "npx prisma migrate dev",
     "studio": "npx prisma studio"
   },
@@ -26,10 +27,10 @@
     "@prisma/client": "^3.0.2",
     "@types/bcrypt": "^5.0.0",
     "@types/jsonwebtoken": "^8.5.5",
-    "apollo-server": "^3.3.0",
     "apollo-server-express": "^3.3.0",
     "bcrypt": "^5.0.1",
     "dotenv": "^10.0.0",
+    "express": "^4.17.1",
     "graphql": "^15.5.3",
     "graphql-upload": "^12.0.0",
     "jsonwebtoken": "^8.5.1",
@@ -44,5 +45,9 @@
     "prisma": "^3.0.2",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.3"
+  },
+  "resolutions": {
+    "fs-capacitor": "^6.2.0",
+    "graphql-upload": "^12.0.0"
   }
 }

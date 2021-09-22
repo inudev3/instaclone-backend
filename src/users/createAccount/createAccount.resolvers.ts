@@ -1,6 +1,6 @@
-import client from "../../client";
 import bcrypt from "bcrypt";
 import {Resolvers} from "../../types";
+
 
 const resolvers: Resolvers = {
     Mutation: {
@@ -10,7 +10,7 @@ const resolvers: Resolvers = {
             username,
             email,
             password,
-        }) => {
+        }, {client}) => {
             //check if username or email is unique
             //prisma client returns promise
             //db에 비밀번호를 저장할 때는 hash로 변환한 상태의 비밀번호를 본다. hash는 단방향 function
@@ -29,13 +29,20 @@ const resolvers: Resolvers = {
                     throw new Error("this username/email is already taken");
                 }
                 const uglyPassword = await bcrypt.hash(password, 10);
-                return client.user.create({
+                await client.user.create({
                     data: {
                         username, email, firstName, lastName, password: uglyPassword
                     }
                 });
+                return {
+                    ok: true
+                };
+
             } catch (e) {
-                return e;
+                return {
+                    ok: false,
+                    error: "Can't create account."
+                }
             }
 
             //hash password
