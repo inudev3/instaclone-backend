@@ -9,6 +9,7 @@ export default gql`
         caption:String
         file:String!
         hashtags:[Hashtag]
+        likes: Int!
     }
     type Hashtag{
         id: Int!
@@ -17,6 +18,13 @@ export default gql`
         createdAt: String!
         updatedAt: String!
         totalPhotos: Int!
+    }
+    type Like{
+        id: Int!
+        photo: Photo!
+        user: User!
+        createdAt: String!
+        updatedAt: String!
     }
 
 `; //의존성이 높으면 같은 module안에 둬라

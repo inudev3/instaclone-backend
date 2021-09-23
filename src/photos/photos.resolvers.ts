@@ -4,7 +4,8 @@ const resolvers: Resolvers = {
     Photo: {
         user: ({userId}, _, {client}) => client.user.findUnique({where: {id: userId}}),
         //userId는 schema에는 없지만 db에는 있음
-        hashtags: ({id}, _, {client}) => client.hashtag.findMany({where: {photos: {some: {id}}}}),
+        hashtags: ({id}, _, {client}) => client.photo.findUnique({where: {id}}).hashtags(),
+        likes: ({id}, _, {client}) => client.like.count({where: {photoId: id}})
 
     },
     Hashtag: {

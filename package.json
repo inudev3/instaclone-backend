@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prekill": "npx kill-port 4000",
+    "kill": "npm run dev",
     "preinstall": "npx npm-force-resolutions",
     "dev": "nodemon --exec ts-node src/server --ext js,ts --delay 2s ",
     "migrate": "npx prisma migrate dev",
