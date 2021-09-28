@@ -1,3 +1,4 @@
+require("dotenv").config(); //dotenv는 한번 로드하면 전역임 다른곳에서 import필요 X, process.env에 접근할 수 있음
 import {getUser, protectResolver} from "./users/users.utils";
 
 import express from "express";
@@ -7,7 +8,7 @@ import {SubscriptionServer} from "subscriptions-transport-ws";
 import {execute, subscribe} from "graphql";
 import {makeExecutableSchema} from "@graphql-tools/schema";
 
-require("dotenv").config(); //dotenv는 한번 로드하면 전역임 다른곳에서 import필요 X, process.env에 접근할 수 있음
+
 import {ApolloServer} from "apollo-server-express"; //최신문법
 //DB URL은 절대! 노출시키면 안됨!
 import {typeDefs, resolvers} from "./schema";
@@ -74,7 +75,7 @@ const startServer = async () => {
         ;
 
         const PORT = process.env.PORT;
-        httpServer.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}/${server.graphqlPath}`));
+        httpServer.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}${server.graphqlPath}`));
     }
 ;
 startServer();

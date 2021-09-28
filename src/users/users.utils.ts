@@ -20,10 +20,16 @@ export const getUser = async (token) => {
 export const protectResolver = (ourResolver) => (root, args, context, info) => { //currying function으로 resolver의
     // context가 로그인 되어있는지 체크
     if (!context.loggedInUser) {
-        return {
-            ok: false,
-            error: "Please log in to perform this action",
+        const {operation} = info.operation;
+        if (operation === "query") {
+            return null;
+        } else {
+            return {
+                ok: false,
+                error: "Please log in to perform this action",
+            }
         }
     }
+
     return ourResolver(root, args, context, info);
 }
