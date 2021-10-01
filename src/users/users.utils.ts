@@ -1,5 +1,6 @@
 import * as jwt from "jsonwebtoken";
 import client from "../client";
+import {Context, Resolver} from "../types";
 
 
 export const getUser = async (token) => {
@@ -17,7 +18,7 @@ export const getUser = async (token) => {
     }
 }
 
-export const protectResolver = (ourResolver) => (root, args, context, info) => { //currying function으로 resolver의
+export const protectResolver = (ourResolver: Resolver) => (root, args, context: Context, info) => { //currying function으로 resolver의
     // context가 로그인 되어있는지 체크
     if (!context.loggedInUser) {
         const {operation} = info.operation;

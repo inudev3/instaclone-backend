@@ -4,7 +4,7 @@ import {protectResolver} from "../../users/users.utils";
 const resolvers: Resolvers = {
     Mutation: {
         editComment: protectResolver(async (_, {id, payload}, {loggedInUser, client}) => {
-            const comment = await client.comment.findUnique({where: {id}, select: {id: true}});
+            const comment = await client.comment.findUnique({where: {id}});
             if (!comment) {
                 return {
                     ok: false,

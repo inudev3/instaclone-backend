@@ -2,7 +2,7 @@ import {User} from "@prisma/client"
 import {PrismaClient} from "@prisma/client";
 
 export type Context = {
-    loggedInUser: User
+    loggedInUser?: User
     client: PrismaClient
 }
 

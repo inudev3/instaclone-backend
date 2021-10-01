@@ -4,7 +4,7 @@ import {protectResolver} from "../../users/users.utils";
 const resolvers: Resolvers = {
     Mutation: {
         readMessage: protectResolver(async (_, {id}, {loggedInUser, client}) => {
-            const message = await client.messasge.findFirst({
+            const message = await client.message.findFirst({
                 where: {
                     id,
                     userId: {not: loggedInUser.id},

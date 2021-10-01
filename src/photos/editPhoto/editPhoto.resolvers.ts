@@ -8,8 +8,8 @@ const resolvers: Resolvers = {
 
 
             const oldPhoto = await client.photo.findFirst({
-                where: {id, userId: loggedInUser.id}
-
+                where: {id, userId: loggedInUser.id},
+                include: {hashtags: {select: {hashtag: true}}}
             }); //unique하지 않은 필드로 탐색할 때는 findFirst를 써야함
 
             if (!oldPhoto) {
@@ -18,9 +18,8 @@ const resolvers: Resolvers = {
                     error: "Photo not found."
                 }
             }
-            const oldHash = oldPhoto.hashtags();
-            console.log(oldHash);
-            client.user.findUnique({where: {id: loggedInUser.id}}).fol
+
+
             const photo = await client.photo.update({
                     where: {id}, data: {
                         caption,
