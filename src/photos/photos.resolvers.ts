@@ -5,7 +5,30 @@ const resolvers: Resolvers = {
         user: ({userId}, _, {client}) => client.user.findUnique({where: {id: userId}}),
         //userId는 schema에는 없지만 db에는 있음
         hashtags: ({id}, _, {client}) => client.photo.findUnique({where: {id}}).hashtags(),
-        likes: ({id}, _, {client}) => client.like.count({where: {photoId: id}})
+        likes: ({id}, _, {client}) => client.like.count({where: {photoId: id}}),
+        comments: ({id}, _, {client}) => client.comment.findMany({where: {photoId: id}, include: {user: true}}),
+        commentNumber: ({id}, _, {client}) => client.comment.count({where: {photoId: id}}),
+        isMine: ({userId}, _, {client, loggedInUser}) => {
+            if (!loggedInUser) {
+                return false;
+            }
+            return userId === loggedInUser.id;
+        },
+        isLiked: async ({id}, _, {client, loggedInUser}) => {
+            if (!loggedInUser) {
+                return false;
+            }
+            const ok = client.like.findUnique({
+                where: {
+                    photoId_userId: {
+                        photoId: id,
+                        userId: loggedInUser.id
+                    }
+                },
+                select: {id: true}
+            })
+            return Boolean(ok);
+        }
 
     },
     Hashtag: {

@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 import {protectResolver} from "../users.utils";
 import {GraphQLUpload} from "graphql-upload";
 import {Resolvers} from "../../types";
+import {uploadS3} from "../../shared/shared.utils";
 
 const resolvers: Resolvers = {
     Upload: GraphQLUpload,
@@ -16,12 +17,13 @@ const resolvers: Resolvers = {
             // instead of write token in every mutation, write token in http headers(like cookie)
             let avatarUrl = null;
             if (avatar) {
-                const {filename, createReadStream} = await avatar;
-                const newFilename = `${loggedInUser.id}-${Date.now()}-${filename}`;
-                const readStream = createReadStream();
-                const writeStream = fs.createWriteStream(process.cwd() + "/uploads/" + newFilename);
-                readStream.pipe(writeStream);
-                avatarUrl = `http://localhost:4000/static/${newFilename}`;
+                avatarUrl = await uploadS3(avatar, loggedInUser.id, "avatars");
+                // const {filename, createReadStream} = await avatar;
+                // const newFilename = `${loggedInUser.id}-${Date.now()}-${filename}`;
+                // const readStream = createReadStream();
+                // const writeStream = fs.createWriteStream(process.cwd() + "/uploads/" + newFilename);
+                // readStream.pipe(writeStream);
+                // avatarUrl = `http://localhost:4000/static/${newFilename}`;
             }
             let uglyPassword = null;
             if (newPassword) {

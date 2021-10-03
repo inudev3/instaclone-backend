@@ -10,6 +10,10 @@ export default gql`
         file:String!
         hashtags:[Hashtag]
         likes: Int!
+        isMine:Boolean!
+        isLiked:Boolean!
+        comments:[Comment]
+        commentNumber: Int!
     }
     type Hashtag{
         id: Int!
