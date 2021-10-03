@@ -27,7 +27,10 @@ const resolvers: Resolvers = {
                 },
                 select: {id: true}
             })
-            return Boolean(ok);
+            if (ok) {
+                return true
+            }
+            return false;
         }
 
     },
