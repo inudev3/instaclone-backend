@@ -14,7 +14,7 @@ export default gql`
         avatar:String
         following: [User]
         followers: [User]
-        photos(lastId:Int!): [Photo]
+        photos(lastId:Int): [Photo]
         totalFollowing: Int! #computed fields
         totalFollowers: Int! #computed
         #type User can also have resolver 

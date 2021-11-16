@@ -3,7 +3,7 @@ import {Resolvers} from "../../types";
 
 const resolvers: Resolvers = {
     Query: {
-        seeProfile: protectResolver(async (_, {username}, {client}) => {
+        seeProfile: protectResolver(async (_, {username, lastId}, {client}) => {
             try {
                 const user = await client.user.findUnique({
                         where: {
@@ -18,7 +18,14 @@ const resolvers: Resolvers = {
                 if (!user) {
                     throw new Error("there is no such user");
                 }
-                return user;
+                const photos = await client.photo.findMany({where:{userId:user.id},
+                    take: 9,
+                    skip: lastId ? 1 : 0,
+                    ...(lastId && {cursor: {id: lastId}})})
+                return {
+                    ...user,
+                    photos
+                };
             } catch (e) {
                 return e;
             }

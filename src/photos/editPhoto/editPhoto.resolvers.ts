@@ -11,7 +11,6 @@ const resolvers: Resolvers = {
                 where: {id, userId: loggedInUser.id},
                 include: {hashtags: {select: {hashtag: true}}}
             }); //unique하지 않은 필드로 탐색할 때는 findFirst를 써야함
-
             if (!oldPhoto) {
                 return {
                     ok: false,
@@ -30,7 +29,6 @@ const resolvers: Resolvers = {
                     }
                 }
             )
-            console.log(photo);
             return {
                 ok: true,
 

@@ -18,16 +18,17 @@ const resolvers: Resolvers = {
             if (!loggedInUser) {
                 return false;
             }
-            const ok = client.like.findUnique({
-                where: {
+            const ok = await client.like.findUnique({
+                where:{
                     photoId_userId: {
-                        photoId: id,
-                        userId: loggedInUser.id
+                        photoId:id,
+                        userId:loggedInUser.id
                     }
                 },
-                select: {id: true}
+                select:{id:true}
             })
             if (ok) {
+
                 return true
             }
             return false;

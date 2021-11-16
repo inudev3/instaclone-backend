@@ -3,8 +3,8 @@ import {protectResolver} from "./users.utils";
 
 const resolvers: Resolvers = {
     User: { //resolver for computed fields
-        totalFollowing: async ({id}, _, {client}) => await client.user.count({where: {followers: {some: {id}}}}),//root is the Object holding this resolver
-        totalFollowers: async ({id}, _, {client}) => await client.user.count({where: {following: {some: {id}}}}),
+        totalFollowing: async ({id}, _, {client}) => client.user.count({where: {followers: {some: {id}}}}),//root is the Object holding this resolver
+        totalFollowers: async ({id}, _, {client}) => client.user.count({where: {following: {some: {id}}}}),
         isFollowing: async ({id}, __, {loggedInUser, client}) => {
             if (!loggedInUser) return false;
             const exists = await client.user.count({
