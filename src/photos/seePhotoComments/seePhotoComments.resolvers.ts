@@ -6,7 +6,7 @@ const resolvers:Resolvers = {
             console.log(loggedInUser);
             return await client.comment.findMany({where:{photoId:id}, orderBy:{
                     createdAt:"asc"
-                }, include:{user:true, photo:true,}})
+                }})
         }
 
     }

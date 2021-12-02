@@ -7,10 +7,10 @@ import {makeExecutableSchema} from "@graphql-tools/schema";
 //loadfileSync로 패턴을 보내서 원하는 파일을 불러올 수 있음 loadFileSynce는 default export만 가져옴
 // **는 폴더, *는 파
 
-const loadedTypes = loadFilesSync(`${__dirname}/**/*.typeDefs.ts`);
+const loadedTypes = loadFilesSync(`${__dirname}/**/*.typeDefs.*`);
 
 const loadedResolvers = loadFilesSync(
-    `${__dirname}/**/*.resolvers.ts`
+    `${__dirname}/**/*.resolvers.*`
 );
 export const typeDefs = mergeTypeDefs(loadedTypes);
 export const resolvers = mergeResolvers(loadedResolvers);

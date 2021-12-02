@@ -20,9 +20,9 @@ const schema = makeExecutableSchema({typeDefs, resolvers});
 const startServer = async () => {
         const server = new ApolloServer({
             schema,
-            context: async (ctx) => {
+            context: async ({req}) => {
                 return {
-                    loggedInUser: await getUser(ctx.req.headers.token),
+                    loggedInUser: await getUser(req.headers.token),
                     client,
 
                 }
