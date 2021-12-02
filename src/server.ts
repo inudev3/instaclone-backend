@@ -7,7 +7,7 @@ import {graphqlUploadExpress} from "graphql-upload";
 import {SubscriptionServer} from "subscriptions-transport-ws";
 import {execute, subscribe} from "graphql";
 import {makeExecutableSchema} from "@graphql-tools/schema";
-
+import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 
 import {ApolloServer} from "apollo-server-express"; //최신문법
 //DB URL은 절대! 노출시키면 안됨!
@@ -20,6 +20,7 @@ const schema = makeExecutableSchema({typeDefs, resolvers});
 const startServer = async () => {
         const server = new ApolloServer({
             schema,
+
             context: async ({req}) => {
                 return {
                     loggedInUser: await getUser(req.headers.token),
@@ -27,7 +28,7 @@ const startServer = async () => {
 
                 }
             },
-            plugins: [
+            plugins: [ApolloServerPluginLandingPageGraphQLPlayground,
                 {
                     async serverWillStart() {
                         return {
