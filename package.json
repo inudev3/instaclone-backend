@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node": "16.13.0"
-  },
   "scripts": {
     "prekill": "npx kill-port 4000",
     "kill": "npm run dev",
@@ -46,6 +43,7 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "morgan": "^1.10.0",
+    "ts-node": "^10.4.0",
     "subscriptions-transport-ws": "^0.9.19"
   },
   "devDependencies": {
@@ -59,6 +57,6 @@
   },
   "resolutions": {
     "fs-capacitor": "^6.2.0",
-    "graphql-upload": "^12.0.0"
+    "graphql-upload": "^11.0.0"
   }
 }
