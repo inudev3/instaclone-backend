@@ -7,7 +7,7 @@
     "prekill": "npx kill-port 4000",
     "kill": "npm run dev",
     "build": "tsc",
-    "start": "./node-modules/.bin/ts-node build/server",
+    "start": "node build/server",
     "dev": "nodemon --exec ts-node src/server --ext js,ts --delay 2s ",
     "migrate": "npx prisma migrate dev",
     "studio": "npx prisma studio"
