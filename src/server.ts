@@ -20,7 +20,6 @@ const schema = makeExecutableSchema({typeDefs, resolvers});
 const startServer = async () => {
         const server = new ApolloServer({
             schema,
-            introspection:true,
 
             context: async ({req}) => {
                 return {
@@ -29,7 +28,7 @@ const startServer = async () => {
 
                 }
             },
-            plugins: [ApolloServerPluginLandingPageGraphQLPlayground,
+            plugins: [
                 {
                     async serverWillStart() {
                         return {
