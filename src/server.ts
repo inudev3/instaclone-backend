@@ -8,7 +8,6 @@ import {SubscriptionServer} from "subscriptions-transport-ws";
 import {execute, subscribe} from "graphql";
 import {makeExecutableSchema} from "@graphql-tools/schema";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
-
 import {ApolloServer} from "apollo-server-express"; //최신문법
 //DB URL은 절대! 노출시키면 안됨!
 import {typeDefs, resolvers} from "./schema";
